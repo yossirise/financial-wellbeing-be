@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import answerSchema from "./answerSchema";
+import answerSchema from "./answerSchema.js";
 
 const surveySchema = new mongoose.Schema({
   answers: [answerSchema],

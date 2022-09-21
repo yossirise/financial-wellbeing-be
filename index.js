@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import surveysRoute from './routes/surveysRoute';
+import surveysRoute from './routes/surveysRoute.js';
 
 dotenv.config();
 
