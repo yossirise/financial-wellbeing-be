@@ -1,12 +1,12 @@
 import Survey from "../schemas/surveySchema.js";
 
 export async function getAnswerCount(req, res, next) {
-  try {
-    const { question } = req.query;
+  const { questionId } = req.params;
 
-    const answers = (await Survey.find(null, [question])).map(
-      (survey) => survey[question]
-    );
+  try {
+    const answers = (
+      await Survey.find({}, { answers: { $elemMatch: { questionId } } })
+    ).map(({ answers }) => answers[0].answer);
 
     const count = {};
 
@@ -17,6 +17,7 @@ export async function getAnswerCount(req, res, next) {
 
     res.send(count);
   } catch (err) {
+    console.log(err);
     res.status(400).send({ message: "error" });
   }
 }
