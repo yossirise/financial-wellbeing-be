@@ -2,8 +2,7 @@ import Survey from "../schemas/surveySchema.js";
 
 export async function postSurvey(req, res, next) {
   try {
-    const survey = { answers: req.body };
-    const mongoSurvey = new Survey(survey);
+    const mongoSurvey = new Survey(req.body);
     const addToSurveyCollection = await mongoSurvey.save();
     res.send(addToSurveyCollection);
   } catch (err) {
