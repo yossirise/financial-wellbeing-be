@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import surveysRoute from "./routes/surveysRoute.js";
 import answersRoute from "./routes/answersRoute.js";
+import questionsRoute from "./routes/questionsRoute.js";
 
 dotenv.config();
 
