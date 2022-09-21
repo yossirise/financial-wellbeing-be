@@ -9,3 +9,21 @@ export async function postSurvey(req, res, next) {
     res.status(400).send({ message: "there has been an error" });
   }
 }
+
+export async function getAllSurveys(req, res, next) {
+    try {
+        const surveys = await Survey.find();
+        res.send(surveys);
+    } catch (err) {
+      res.status(400).send({ message: "error" });
+    }
+  }
+
+  export async function deleteSurvey(req, res, next) {
+    try {
+        const deletedSurvey = await Survey.findByIdAndDelete(req.params.id);
+        res.send(deletedSurvey);
+    } catch (err) {
+      res.status(400).send({ message: "error" });
+    }
+  }
