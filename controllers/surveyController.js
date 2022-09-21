@@ -1,10 +1,10 @@
 import Survey from "../schemas/surveySchema.js";
 
-export function postSurvey(req, res, next) {
+export async function postSurvey(req, res, next) {
   try {
     const survey = { answers: req.body };
     const mongoSurvey = new Survey(survey);
-    const addToSurveyCollection = mongoSurvey.save();
+    const addToSurveyCollection = await mongoSurvey.save();
     res.send(addToSurveyCollection);
   } catch (err) {
     res.status(400).send({ message: "there has been an error" });
