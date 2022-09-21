@@ -1,6 +1,6 @@
-export async function getUserGeneralScore(req, res, next) {
+export async function getAnswerCount(req, res, next) {
   try {
-
+    
   } catch (err) {
     res.status(400).send({ message: "error" });
   }

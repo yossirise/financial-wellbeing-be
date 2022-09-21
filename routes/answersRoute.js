@@ -1,7 +1,7 @@
 import express from "express";
-import { getUserGeneralScore } from "../controllers/answersController.js";
+import { getAnswerCount } from "../controllers/answersController.js";
 const router = express.Router();
 
-router.get('/', getUserGeneralScore)
+router.get('/count', getAnswerCount)
 
 export default router;
