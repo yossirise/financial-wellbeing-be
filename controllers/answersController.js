@@ -2,13 +2,11 @@ import Survey from "../schemas/surveySchema.js";
 
 export async function getAnswerCount(req, res, next) {
   try {
-    const { question } = req.body;
+    const { question } = req.query;
 
     const answers = (await Survey.find(null, [question])).map(
       (survey) => survey[question]
     );
-
-    console.log(answers);
 
     const count = {};
 
