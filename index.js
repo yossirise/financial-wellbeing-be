@@ -15,6 +15,7 @@ app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use("/surveys", surveysRoute);
 app.use("/answers", answersRoute);
+app.use("/questions", questionsRoute);
 
 process.stdout.write("Connecting to MongoDB... ");
 await mongoose.connect(process.env.MONGODB);
