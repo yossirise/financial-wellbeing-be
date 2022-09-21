@@ -1,0 +1,30 @@
+{
+  "name": "financial-wellbeing-be",
+  "version": "1.0.0",
+  "description": "ITC Hackathon project",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yossirise/financial-wellbeing-be.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yossirise/financial-wellbeing-be/issues"
+  },
+  "homepage": "https://github.com/yossirise/financial-wellbeing-be#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
