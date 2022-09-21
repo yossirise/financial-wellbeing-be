@@ -5,4 +5,4 @@ const surveySchema = new mongoose.Schema({
   answers: [answerSchema],
 });
 
-export default mongoose.model("User", surveySchema);
+export default mongoose.model("Survey", surveySchema);
