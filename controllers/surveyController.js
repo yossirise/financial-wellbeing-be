@@ -7,12 +7,10 @@ export async function postSurvey(req, res, next) {
     Object.values(req.body).every((v) => 0 <= v && v < 5);
 
   if (!bodyValid) {
-    return res
-      .status(400)
-      .send({
-        message:
-          "please provied exactly seven answers with values ranging from 0 to 4",
-      });
+    return res.status(400).send({
+      message:
+        "please provied exactly seven answers with values ranging from 0 to 4",
+    });
   }
 
   const answers = Object.keys(req.body).map((questionId) => ({
@@ -46,6 +44,17 @@ export async function deleteSurvey(req, res, next) {
   try {
     const deletedSurvey = await Survey.findByIdAndDelete(req.params.id);
     res.send(deletedSurvey);
+  } catch (err) {
+    res.status(400).send({ message: "error" });
+  }
+}
+
+export async function getTotalScore(req, res, next) {
+  try {
+    const totalScore = await Survey.aggregate([
+      { $group: { _id: null, totalScore: { $avg: "$score" } } },
+    ]);
+    res.send({ totalScore: Math.round(totalScore[0].totalScore) });
   } catch (err) {
     res.status(400).send({ message: "error" });
   }
