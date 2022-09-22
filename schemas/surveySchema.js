@@ -9,6 +9,7 @@ const surveySchema = new mongoose.Schema(
   {
     email: String,
     answers: [answerSchema],
+    score: Number,
   },
   { timestamps: true }
 );

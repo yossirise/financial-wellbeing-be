@@ -1,13 +1,31 @@
+import axios from "axios";
 import Survey from "../schemas/surveySchema.js";
 
 export async function postSurvey(req, res, next) {
+  const bodyValid =
+    Object.keys(req.body).length === 7 &&
+    Object.values(req.body).every((v) => 0 <= v && v < 5);
+
+  if (!bodyValid) {
+    return res
+      .status(400)
+      .send({
+        message:
+          "please provied exactly seven answers with values ranging from 0 to 4",
+      });
+  }
+
   const answers = Object.keys(req.body).map((questionId) => ({
     questionId,
     answer: req.body[questionId],
   }));
 
   try {
-    const mongoSurvey = new Survey({ answers });
+    const { score } = (
+      await axios.post("http://52.58.188.250:8080/wellbeingscore", req.body)
+    ).data;
+
+    const mongoSurvey = new Survey({ answers, score: Math.round(score) });
     const addToSurveyCollection = await mongoSurvey.save();
     res.send(addToSurveyCollection);
   } catch (err) {
