@@ -4,9 +4,11 @@ export async function getAnswerCount(req, res, next) {
   const { questionId } = req.params;
 
   try {
-    const answers = (
-      await Survey.find({}, { answers: { $elemMatch: { questionId } } })
-    ).map(({ answers }) => answers[0].answer);
+    const answers = (await Survey.find())
+      .filter(({ answers }) => answers.some((a) => a.questionId === questionId))
+      .map(
+        ({ answers }) => answers.find((a) => a.questionId === questionId).answer
+      );
 
     const count = {};
 
